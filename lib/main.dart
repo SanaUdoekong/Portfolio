@@ -22,120 +22,179 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Portfolio',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ), // Text Styles
-          ), // Title
-          backgroundColor: Colors.blueGrey,
-        ), // App Bar
-
-        body: Stack(
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: 45, left: 30, right: 30),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: _colors,
-                          stops: _stops,
-                        ), // Gradient
-                      ), // Decoration
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 85,
-                                  width: 85,
-                                  margin: EdgeInsets.only(top: 30, bottom: 10),
-                                  child: CircleAvatar(
-                                    radius: 50,
-                                    backgroundImage: AssetImage('assets/images/me.jpg'),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.grey,
-                                  ), // Decoration
-                                ), // Display Image
-                                Container(
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(bottom: 5),
-                                  child: Text(
-                                    'Sana Idemakpan Udoekong',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ), // Text Style
-                                  ), // Text
-                                ), // Name
-
-                                Container(
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(bottom: 40),
-                                  child: Text(
-                                    'Student | Aspiring Software Engineer | Music Freak | Technophile | Innovator',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                    ), // Text Styles
-                                  ), // Description
-                                ), // Name
-
-                                Column(
-                                  children: [
-                                    _buildButtonColumn(Colors.blueGrey, Icons.call, '+2347089404857'),
-                                    _buildButtonColumn(Colors.blueGrey, Icons.email, 'udoekongsana@gmail.com'),
-                                    _buildButtonColumn(Colors.blueGrey, Icons.home, 'Ikpe Udok'),
-                                  ],
-                                ), // Other details
-                              ], // Name and Description
-                            ), // Columns for name and description
-                          ), // Expanded
-                        ], // Columns and rows
-                      ), // Home
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ), // Body
-      ), // Home
+      home: (MyPortfolio()), // Home
     );
   }
 }
 
-Column _buildButtonColumn(Color color, IconData icon, String label) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Icon(icon, color: color),
-      Container(
-        margin: const EdgeInsets.only(top: 8, bottom: 8),
-        child: Text(
-          label,
+class MyPortfolio extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'My Portfolio',
           style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey,
       ),
-    ],
-  );
-}
+      body: topSection(),
+    );
+  }
 
-                       
-                       
-                            
-          
+  Widget topSection() {
+    return ListView(
+      children: [
+        Container(
+          padding: EdgeInsets.only(bottom: 15, left: 30, right: 30),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: _colors,
+              stops: _stops,
+            ), // Gradient
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(20.0),
+              bottomLeft: Radius.circular(20.0),
+            ),
+          ), // Decoration
+
+          child: Column(
+            children: [
+              Container(
+                height: 105,
+                width: 105,
+
+                margin: EdgeInsets.only(top: 30, bottom: 10),
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage('assets/images/me.jpg'),
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey[400],
+                ), // Decoration
+              ), // Display Image
+
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(bottom: 5),
+                child: Text(
+                  'Sana Idemakpan Udoekong',
+                  style: TextStyle(
+                    color: Colors.grey[400],
+                    fontSize: 35,
+                    fontStyle: FontStyle.italic,
+                  ), // Text Style
+                ), // Text
+              ), // Name
+
+              Divider(
+                color: Colors.white,
+                height: 5,
+              ),
+
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(top: 15),
+                child: Text(
+                  'Student | Aspiring Software Engineer | Music Freak | Technophile | Innovator',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  ), // Text Styles
+                ), // Description
+              ), // Name
+            ],
+          ),
+        ), //topSection
+
+        Container(
+          padding: EdgeInsets.only(bottom: 20, right: 10, left: 10),
+          margin: EdgeInsets.only(top: 18, bottom: 15),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(8),
+                width: 600,
+                child: Card(
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Icon(
+                          Icons.phone,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                      Text('+23407089404857'),
+                    ],
+                  ),
+                ),
+              ), //phone
+
+              Container(
+                padding: EdgeInsets.all(8),
+                width: 600,
+                child: Card(
+                  child: Column(
+                    children: [
+                      Card(
+                        color: Colors.white,
+                        child: Icon(
+                          Icons.mail,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                      Text('udoekongsana@gmail.com'),
+                    ],
+                  ),
+                ),
+              ), //email
+
+              Container(
+                padding: EdgeInsets.all(8),
+                width: 600,
+                child: Card(
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Icon(
+                          Icons.web,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                      Text('https://github.com/SanaUdoekong'),
+                    ],
+                  ),
+                ),
+              ), // github
+
+              Container(
+                padding: EdgeInsets.all(8),
+                width: 600,
+                child: Card(
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Icon(
+                          Icons.home,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                      Text('Ikpe Udok, Ikpe Annang'),
+                    ],
+                  ),
+                ),
+              ), // address
+            ],
+          ),
+        ), //Other details
+      ],
+    );
+  }
+}
